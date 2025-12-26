@@ -1,0 +1,192 @@
+---
+// FAQ Section - 常见问题
+import { ChevronDown, Mail, Send, ArrowRight, Check } from 'lucide-astro';
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'zh' } = Astro.props;
+---
+
+<section id="faq" class="py-24 relative">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- 标题 -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent">
+          {t(lang, 'faqTitle')}
+        </span>
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-500 text-lg">
+        {t(lang, 'faqDesc')}
+      </p>
+    </div>
+
+    <!-- FAQ 列表 -->
+    <div class="space-y-4">
+      <!-- Q1 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ1')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          <p class="mb-3">
+            {t(lang, 'faqA1Part1')}
+          </p>
+          <p>
+            {t(lang, 'faqA1Part2')}
+          </p>
+        </div>
+      </details>
+
+      <!-- Q2 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ2')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          {t(lang, 'faqA2')}
+        </div>
+      </details>
+
+      <!-- Q3 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ3')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          <p class="mb-3">
+            {t(lang, 'faqA3Part1')}
+          </p>
+          <p>
+            {t(lang, 'faqA3Part2')}
+          </p>
+        </div>
+      </details>
+
+      <!-- Q4 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ4')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          {t(lang, 'faqA4')}
+        </div>
+      </details>
+
+      <!-- Q5 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ5')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          <p class="mb-3">{t(lang, 'faqA5Intro')}</p>
+          <ul class="space-y-1 text-sm">
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{t(lang, 'faqA5Item1')}</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{t(lang, 'faqA5Item2')}</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{t(lang, 'faqA5Item3')}</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{t(lang, 'faqA5Item4')}</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{t(lang, 'faqA5Item5')}</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{t(lang, 'faqA5Item6')}</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- Q6 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ6')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-neutral-400 dark:text-neutral-600 mt-0.5 shrink-0" />
+              <span>{t(lang, 'faqA6Item1')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-neutral-400 dark:text-neutral-600 mt-0.5 shrink-0" />
+              <span>{t(lang, 'faqA6Item2')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-neutral-400 dark:text-neutral-600 mt-0.5 shrink-0" />
+              <span>
+                {t(lang, 'faqA6Item3Part1')} <code class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0">--chunk-size</code> {t(lang, 'faqA6Item3Part2')}
+                <code class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0">--overlap-size</code> {t(lang, 'faqA6Item3Part3')}
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-neutral-400 dark:text-neutral-600 mt-0.5 shrink-0" />
+              <span>{t(lang, 'faqA6Item4')}</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="mt-16 p-8 bg-gradient-to-b from-violet-50 dark:from-violet-950/30 to-transparent border border-violet-200 dark:border-violet-900/30 rounded-xl">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-lg bg-violet-100 dark:bg-violet-950/50 border border-violet-200 dark:border-violet-900/50 flex items-center justify-center shrink-0">
+          <Mail class="w-6 h-6 text-violet-600 dark:text-violet-400" />
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{t(lang, 'faqContactTitle')}</h4>
+          <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">
+            {t(lang, 'faqContactDesc')}
+          </p>
+          <a href="mailto:{t(lang, 'faqContactEmail')}" class="text-violet-600 dark:text-violet-400 hover:underline">
+            {t(lang, 'faqContactEmail')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  details summary {
+    list-style: none;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+// Problem/Solution Section - 问题与解决方案对比
+import { XCircle, X, CheckCircle, Check, Lightbulb } from 'lucide-astro';
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'zh' } = Astro.props;
+---
+
+<section class="py-24 relative">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- 标题 -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent">
+          {t(lang, 'psTitle')}
+        </span>
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-500 text-lg max-w-2xl mx-auto">
+        {t(lang, 'psDesc')}
+      </p>
+    </div>
+
+    <!-- 对比卡片 -->
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- 传统方案 -->
+      <div class="relative group">
+        <div class="absolute -inset-px bg-gradient-to-b from-red-600/10 dark:from-red-600/20 to-transparent rounded-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+        <div class="relative bg-white dark:bg-neutral-950 border border-red-200 dark:border-neutral-700 rounded-xl p-8 backdrop-blur-sm shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-lg bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900/50 flex items-center justify-center">
+              <XCircle class="w-6 h-6 text-red-600 dark:text-red-400" />
+            </div>
+            <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'psTraditional')}</h3>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex gap-3">
+              <X class="w-5 h-5 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psPoint1')}</strong> - {t(lang, 'psPoint1Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <X class="w-5 h-5 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psPoint2')}</strong> - {t(lang, 'psPoint2Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <X class="w-5 h-5 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psPoint3')}</strong> - {t(lang, 'psPoint3Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <X class="w-5 h-5 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psPoint4')}</strong> - {t(lang, 'psPoint4Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <X class="w-5 h-5 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psPoint5')}</strong> - {t(lang, 'psPoint5Desc')}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Exam2X 方案 -->
+      <div class="relative group">
+        <div class="absolute -inset-px bg-gradient-to-b from-emerald-600/10 dark:from-emerald-600/20 to-transparent rounded-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+        <div class="relative bg-white dark:bg-neutral-950 border border-emerald-200 dark:border-neutral-700 rounded-xl p-8 backdrop-blur-sm shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900/50 flex items-center justify-center">
+              <CheckCircle class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'psExam2X')}</h3>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex gap-3">
+              <Check class="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psExPoint1')}</strong> - {t(lang, 'psExPoint1Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <Check class="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psExPoint2')}</strong> - {t(lang, 'psExPoint2Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <Check class="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psExPoint3')}</strong> - {t(lang, 'psExPoint3Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <Check class="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psExPoint4')}</strong> - {t(lang, 'psExPoint4Desc')}
+              </span>
+            </li>
+            <li class="flex gap-3">
+              <Check class="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <span class="text-neutral-600 dark:text-neutral-500">
+                <strong class="text-neutral-900 dark:text-neutral-100">{t(lang, 'psExPoint5')}</strong> - {t(lang, 'psExPoint5Desc')}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 核心技术说明 -->
+    <div class="mt-16 p-8 bg-gradient-to-b from-violet-50 dark:from-violet-950/30 to-transparent border border-violet-200 dark:border-violet-900/30 rounded-xl">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-lg bg-violet-100 dark:bg-violet-950/50 border border-violet-200 dark:border-violet-900/50 flex items-center justify-center shrink-0">
+          <Lightbulb class="w-6 h-6 text-violet-600 dark:text-violet-400" />
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{t(lang, 'psTechTitle')}</h4>
+          <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            {t(lang, 'psTechDesc')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

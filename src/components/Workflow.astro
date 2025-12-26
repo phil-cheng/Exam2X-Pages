@@ -1,0 +1,135 @@
+---
+// Workflow Section - 工作流程展示
+import { FileText, Settings, Brain, Table, GitBranch, Play, Cpu } from 'lucide-astro';
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'zh' } = Astro.props;
+---
+
+<section id="workflow" class="py-24 relative">
+  <div class="absolute inset-0 bg-gradient-to-b from-neutral-100 dark:from-neutral-950 via-neutral-50 dark:via-neutral-900/50 to-neutral-100 dark:to-neutral-950"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+    <!-- 标题 -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent">
+          {t(lang, 'workflowTitle')}
+        </span>
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-500 text-lg max-w-2xl mx-auto">
+        {t(lang, 'workflowDesc')}
+      </p>
+    </div>
+
+    <!-- 流程步骤 -->
+    <div class="relative">
+      <!-- 连接线 -->
+      <div class="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent hidden lg:block"></div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- 步骤 1 -->
+        <div class="relative group">
+          <div class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 backdrop-blur-sm hover:border-blue-300 dark:hover:border-neutral-600 transition-colors shadow-sm">
+            <div class="w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-950/50 border border-blue-100 dark:border-blue-900/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <FileText class="w-7 h-7 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center">
+              1
+            </div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{t(lang, 'wfStep1Title')}</h3>
+            <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+              {t(lang, 'wfStep1Desc')}
+            </p>
+          </div>
+        </div>
+
+        <!-- 步骤 2 -->
+        <div class="relative group">
+          <div class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 backdrop-blur-sm hover:border-violet-300 dark:hover:border-neutral-600 transition-colors shadow-sm">
+            <div class="w-14 h-14 rounded-xl bg-violet-50 dark:bg-violet-950/50 border border-violet-100 dark:border-violet-900/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <Settings class="w-7 h-7 text-violet-600 dark:text-violet-400" />
+            </div>
+            <div class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-violet-600 text-white text-sm font-bold flex items-center justify-center">
+              2
+            </div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{t(lang, 'wfStep2Title')}</h3>
+            <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+              {t(lang, 'wfStep2Desc')}
+            </p>
+          </div>
+        </div>
+
+        <!-- 步骤 3 -->
+        <div class="relative group">
+          <div class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 backdrop-blur-sm hover:border-amber-300 dark:hover:border-neutral-600 transition-colors shadow-sm">
+            <div class="w-14 h-14 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-100 dark:border-amber-900/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <Brain class="w-7 h-7 text-amber-600 dark:text-amber-400" />
+            </div>
+            <div class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-amber-600 text-white text-sm font-bold flex items-center justify-center">
+              3
+            </div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{t(lang, 'wfStep3Title')}</h3>
+            <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+              {t(lang, 'wfStep3Desc')}
+            </p>
+          </div>
+        </div>
+
+        <!-- 步骤 4 -->
+        <div class="relative group">
+          <div class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 backdrop-blur-sm hover:border-emerald-300 dark:hover:border-neutral-600 transition-colors shadow-sm">
+            <div class="w-14 h-14 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-100 dark:border-emerald-900/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <Table class="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <div class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-emerald-600 text-white text-sm font-bold flex items-center justify-center">
+              4
+            </div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{t(lang, 'wfStep4Title')}</h3>
+            <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+              {t(lang, 'wfStep4Desc')}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技术栈说明 -->
+    <div class="mt-16 grid md:grid-cols-3 gap-6">
+      <div class="p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <GitBranch class="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+          <h4 class="font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'wfTech1Title')}</h4>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+          {t(lang, 'wfTech1Desc')}
+        </p>
+      </div>
+
+      <div class="p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <Play class="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+          <h4 class="font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'wfTech2Title')}</h4>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+          {t(lang, 'wfTech2Desc')}
+        </p>
+      </div>
+
+      <div class="p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <Cpu class="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+          <h4 class="font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'wfTech3Title')}</h4>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+          {t(lang, 'wfTech3Desc')}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

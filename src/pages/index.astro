@@ -1,0 +1,391 @@
+---
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/utils';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ProblemSolution from '../components/ProblemSolution.astro';
+import Workflow from '../components/Workflow.astro';
+import Features from '../components/Features.astro';
+import Guide from '../components/Guide.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+import { Rocket, Menu, Sun, Moon, Languages, Github, ChevronDown, Check } from 'lucide-astro';
+
+// 获取语言的辅助函数
+function getLanguage(cookies: AstroCookies, url: URL): Language {
+  const urlLang = url.searchParams.get('lang');
+  if (urlLang === 'zh' || urlLang === 'en') {
+    return urlLang as Language;
+  }
+  const langCookie = cookies.get('lang');
+  if (langCookie?.value === 'zh' || langCookie?.value === 'en') {
+    return langCookie.value as Language;
+  }
+  return 'zh';
+}
+
+const lang = getLanguage(Astro.cookies, Astro.url);
+---
+
+<Layout lang={lang}>
+  <!-- 导航栏 -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-900/50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2 group">
+        <img src="/logo.png" alt="Exam2X" class="w-8 h-8 rounded-lg group-hover:scale-110 transition-transform object-cover" />
+        <span class="font-semibold text-neutral-900 dark:text-neutral-300">Exam2X</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm text-neutral-600 dark:text-neutral-400">
+        <a href="#features" class="hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navFeatures')}</a>
+        <a href="#workflow" class="hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navWorkflow')}</a>
+        <a href="#guide" class="hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navGuide')}</a>
+        <a href="#faq" class="hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navFaq')}</a>
+
+        <!-- 其他产品下拉菜单 -->
+        <div class="relative" id="products-selector">
+          <button
+            id="products-dropdown-btn"
+            class="flex items-center gap-1 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors"
+          >
+            <span>{t(lang, 'navProducts')}</span>
+            <ChevronDown class="w-3.5 h-3.5 transition-transform duration-200" id="products-chevron" />
+          </button>
+          <!-- 下拉菜单 -->
+          <div
+            id="products-dropdown-menu"
+            class="absolute left-0 top-full mt-2 hidden bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg overflow-hidden min-w-[200px] z-50"
+          >
+            <a
+              href="#similarity"
+              class="product-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center gap-2"
+            >
+              <span>试卷试题相似性检查</span>
+            </a>
+            <a
+              href="#quality"
+              class="product-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center gap-2"
+            >
+              <span>试卷试题质量检查</span>
+            </a>
+            <a
+              href="#formula"
+              class="product-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center gap-2"
+            >
+              <span>公式截图转LaTex</span>
+            </a>
+            <a
+              href="#deduplication"
+              class="product-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center gap-2"
+            >
+              <span>海量资料试题快速查重</span>
+            </a>
+            <a
+              href="#rag"
+              class="product-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center gap-2"
+            >
+              <span>RAG辅助命题</span>
+            </a>
+             <a
+              href="#together"
+              class="product-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center gap-2"
+            >
+              <span>多人协同命题</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧按钮组 -->
+      <div class="flex items-center gap-2">
+         <!-- 开始使用按钮 -->
+        <a
+          href="#guide"
+          class="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg text-sm font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
+        >
+          <Rocket class="w-4 h-4" />
+          {t(lang, 'navGetStarted')}
+        </a>
+        
+        <!-- 语言切换 -->
+        <div class="relative" id="lang-selector">
+          <button
+            id="lang-dropdown-btn"
+            class="hidden sm:flex items-center gap-1.5 px-3 py-2 text-neutral-600 dark:text-neutral-400 rounded-lg text-sm font-medium hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+          >
+            <Languages class="w-4 h-4" />
+            <span id="current-lang">{lang === 'en' ? 'English' : '中文'}</span>
+            <ChevronDown class="w-3.5 h-3.5 transition-transform duration-200" id="lang-chevron" />
+          </button>
+          <!-- 语言下拉菜单 -->
+          <div
+            id="lang-dropdown-menu"
+            class="absolute right-0 top-full mt-2 hidden bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg overflow-hidden min-w-[140px] z-50"
+          >
+            <button
+              onclick="setLanguage('zh')"
+              class="lang-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center justify-between gap-2"
+              data-lang="zh"
+            >
+              <span>中文</span>
+              <Check class="w-4 h-4 text-violet-600 dark:text-violet-400 hidden check-icon" />
+            </button>
+            <button
+              onclick="setLanguage('en')"
+              class="lang-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center justify-between gap-2"
+              data-lang="en"
+            >
+              <span>English</span>
+              <Check class="w-4 h-4 text-violet-600 dark:text-violet-400 hidden check-icon" />
+            </button>
+          </div>
+        </div>
+
+        <!-- 主题切换 -->
+        <button
+          id="theme-toggle"
+          class="flex items-center justify-center w-10 h-10 text-neutral-600 dark:text-neutral-400 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+          title="切换主题"
+        >
+          <Sun class="w-5 h-5 hidden dark:block" />
+          <Moon class="w-5 h-5 block dark:hidden" />
+        </button>
+
+        <!-- GitHub 按钮 -->
+        <a
+          href="https://github.com/yourusername/exam2x"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:flex items-center justify-center w-10 h-10 text-neutral-600 dark:text-neutral-400 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+          title="GitHub"
+        >
+          <Github class="w-5 h-5" />
+        </a>
+
+       
+
+        <!-- 移动端菜单按钮 -->
+        <button class="md:hidden p-2 text-neutral-600 dark:text-neutral-400" id="mobile-menu-btn">
+          <Menu class="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+
+    <!-- 移动端菜单 -->
+    <div class="md:hidden hidden bg-white dark:bg-neutral-900 backdrop-blur-md border-t border-neutral-200 dark:border-neutral-800" id="mobile-menu">
+      <div class="px-6 py-4 space-y-3">
+        <a href="#features" class="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navFeatures')}</a>
+        <a href="#workflow" class="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navWorkflow')}</a>
+        <a href="#guide" class="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navGuide')}</a>
+        <a href="#faq" class="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">{t(lang, 'navFAQ')}</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要内容 -->
+  <main>
+    <Hero lang={lang} />
+    <ProblemSolution lang={lang} />
+    <Workflow lang={lang} />
+    <Features lang={lang} />
+    <Guide lang={lang} />
+    <FAQ lang={lang} />
+  </main>
+
+  <!-- 页脚 -->
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  /* 平滑滚动 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 移动端菜单动画 */
+  #mobile-menu {
+    transition: all 0.3s ease;
+  }
+
+  #mobile-menu.show {
+    display: block;
+  }
+</style>
+
+<script>
+  // 等待 DOM 加载完成
+  document.addEventListener('DOMContentLoaded', () => {
+    // 主题切换逻辑
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // 检查本地存储或系统偏好
+    const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+
+    themeToggle?.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+      // 设置 cookie 以便服务端渲染时能读取主题偏好
+      document.cookie = `theme=${isDark ? 'dark' : 'light'}; path=/; max-age=31536000`;
+    });
+
+    // 移动端菜单切换
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('show');
+    });
+
+    // 点击菜单项后关闭菜单
+    const menuLinks = mobileMenu?.querySelectorAll('a');
+    menuLinks?.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.remove('show');
+      });
+    });
+
+    // 导航栏滚动效果
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 100) {
+        nav?.classList.add('shadow-lg');
+      } else {
+        nav?.classList.remove('shadow-lg');
+      }
+    });
+
+    // 语言切换下拉菜单
+    const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+    const langDropdownMenu = document.getElementById('lang-dropdown-menu');
+    const langChevron = document.getElementById('lang-chevron');
+    let isLangMenuOpen = false;
+
+    // 初始化当前语言
+    const savedLang = localStorage.getItem('lang') || 'zh';
+    updateLanguageUI(savedLang);
+
+    // 切换下拉菜单
+    langDropdownBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // 关闭其他菜单
+      if (isProductsMenuOpen) {
+        isProductsMenuOpen = false;
+        productsDropdownMenu?.classList.add('hidden');
+        productsChevron?.classList.remove('rotate-180');
+      }
+
+      isLangMenuOpen = !isLangMenuOpen;
+      if (isLangMenuOpen) {
+        langDropdownMenu?.classList.remove('hidden');
+        langChevron?.classList.add('rotate-180');
+      } else {
+        langDropdownMenu?.classList.add('hidden');
+        langChevron?.classList.remove('rotate-180');
+      }
+    });
+
+    // 其他产品下拉菜单
+    const productsDropdownBtn = document.getElementById('products-dropdown-btn');
+    const productsDropdownMenu = document.getElementById('products-dropdown-menu');
+    const productsChevron = document.getElementById('products-chevron');
+    let isProductsMenuOpen = false;
+
+    // 切换下拉菜单
+    productsDropdownBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // 关闭其他菜单
+      if (isLangMenuOpen) {
+        isLangMenuOpen = false;
+        langDropdownMenu?.classList.add('hidden');
+        langChevron?.classList.remove('rotate-180');
+      }
+
+      isProductsMenuOpen = !isProductsMenuOpen;
+      if (isProductsMenuOpen) {
+        productsDropdownMenu?.classList.remove('hidden');
+        productsChevron?.classList.add('rotate-180');
+      } else {
+        productsDropdownMenu?.classList.add('hidden');
+        productsChevron?.classList.remove('rotate-180');
+      }
+    });
+
+    // 点击产品选项后关闭菜单
+    const productOptions = productsDropdownMenu?.querySelectorAll('.product-option');
+    productOptions?.forEach((option) => {
+      option.addEventListener('click', () => {
+        isProductsMenuOpen = false;
+        productsDropdownMenu?.classList.add('hidden');
+        productsChevron?.classList.remove('rotate-180');
+      });
+    });
+
+    // 点击外部关闭所有菜单
+    document.addEventListener('click', (e) => {
+      // 关闭语言菜单
+      if (isLangMenuOpen && !langDropdownBtn?.contains(e.target as Node) && !langDropdownMenu?.contains(e.target as Node)) {
+        isLangMenuOpen = false;
+        langDropdownMenu?.classList.add('hidden');
+        langChevron?.classList.remove('rotate-180');
+      }
+      // 关闭产品菜单
+      if (isProductsMenuOpen && !productsDropdownBtn?.contains(e.target as Node) && !productsDropdownMenu?.contains(e.target as Node)) {
+        isProductsMenuOpen = false;
+        productsDropdownMenu?.classList.add('hidden');
+        productsChevron?.classList.remove('rotate-180');
+      }
+    });
+
+    // 语言切换函数
+    (window as any).setLanguage = function(newLang: string) {
+      updateLanguageUI(newLang);
+      localStorage.setItem('lang', newLang);
+      // 设置 cookie 以便服务端渲染时能读取语言偏好
+      document.cookie = `lang=${newLang}; path=/; max-age=31536000; SameSite=Lax`;
+      // 关闭菜单
+      isLangMenuOpen = false;
+      langDropdownMenu?.classList.add('hidden');
+      langChevron?.classList.remove('rotate-180');
+      // 跳转到新语言 URL
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', newLang);
+      window.location.href = url.toString();
+    };
+
+    // 更新语言UI
+    function updateLanguageUI(lang: string) {
+      const langText = document.getElementById('current-lang');
+      const langOptions = document.querySelectorAll('.lang-option');
+
+      // 更新按钮文字
+      if (lang === 'zh') {
+        langText!.textContent = '中文';
+      } else {
+        langText!.textContent = 'English';
+      }
+
+      // 更新选项的选中状态
+      langOptions.forEach((option) => {
+        const optionLang = option.getAttribute('data-lang');
+        const checkIcon = option.querySelector('.check-icon');
+        if (optionLang === lang) {
+          checkIcon?.classList.remove('hidden');
+          option.classList.add('bg-violet-50', 'dark:bg-violet-950/30');
+        } else {
+          checkIcon?.classList.add('hidden');
+          option.classList.remove('bg-violet-50', 'dark:bg-violet-950/30');
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,316 @@
+---
+// Guide Section - 使用指南
+import { Check, Lightbulb, ArrowRight, Settings2, Copy } from "lucide-astro";
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'zh' } = Astro.props;
+---
+
+<section id="guide" class="py-24 relative">
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-neutral-100 dark:from-neutral-950 via-neutral-50 dark:via-neutral-900/50 to-neutral-100 dark:to-neutral-950"
+  >
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+    <!-- 标题 -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        <span
+          class="bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent"
+        >
+          {t(lang, 'guideTitle')}
+        </span>
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-500 text-lg max-w-2xl mx-auto">
+        {t(lang, 'guideDesc')}
+      </p>
+    </div>
+
+    <!-- 步骤 -->
+    <div class="space-y-8">
+      <!-- 步骤 1: 安装依赖 -->
+      <div
+        class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden shadow-sm"
+      >
+        <div
+          class="flex items-center gap-3 px-6 py-4 border-b border-neutral-200 dark:border-neutral-700"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center"
+          >
+            1
+          </div>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'guideStep1Title')}</h3>
+        </div>
+        <div class="p-6 space-y-4">
+          <p class="text-neutral-600 dark:text-neutral-500">
+            1、{t(lang, 'guideStep1Desc')}
+            <a
+                href="**"
+                target="_blank"
+                class="text-blue-600 dark:text-blue-400 hover:underline">github</a
+              > 
+              
+          </p>
+          <p class="text-neutral-600 dark:text-neutral-500">
+            2、{t(lang, 'guideStep1InstallDep')}
+          </p>
+          <ul class="space-y-2 text-neutral-600 dark:text-neutral-400 text-sm">
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+              <span>{t(lang, 'guideStep1Item1')} <a
+                href="https://pandoc.org/installing.html"
+                target="_blank"
+                class="text-blue-600 dark:text-blue-400 hover:underline"> {t(lang, 'guideStepDownload')}  </a ></span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+              <span>{t(lang, 'guideStep1Item2')}
+                <a href="https://www.google.cn/intl/zh-CN_ALL/chrome/fallback/"
+                target="_blank"
+                class="text-blue-600 dark:text-blue-400 hover:underline"
+                >{t(lang, 'guideStepDownload')}</a>
+              </span>
+            </li>
+          </ul>
+          <div
+            class="p-4 bg-neutral-100 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700"
+          >
+            <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+              {t(lang, 'guideStep1Note')}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步骤 2: 配置环境 -->
+      <div
+        class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden shadow-sm"
+      >
+        <div
+          class="flex items-center gap-3 px-6 py-4 border-b border-neutral-200 dark:border-neutral-700"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-violet-600 text-white text-sm font-bold flex items-center justify-center"
+          >
+            2
+          </div>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'guideStep2Title')}</h3>
+        </div>
+        <div class="p-6 space-y-4">
+          <p class="text-neutral-600 dark:text-neutral-500">
+            {t(lang, 'guideStep2Desc')}
+          </p>
+          <div class="relative group">
+            <pre
+              class="bg-neutral-900 dark:bg-neutral-950 rounded-lg p-4 text-sm overflow-x-auto border border-neutral-700 dark:border-neutral-700">
+              <code class="text-neutral-200 dark:text-neutral-100">
+                <span class="text-neutral-500 dark:text-neutral-600">{t(lang, 'guideStep2CodeComment')}</span>
+                <span class="text-violet-400">API_BASE</span>=<span class="text-emerald-400">https://api.siliconflow.cn/v1</span>
+                <span class="text-violet-400">API_KEY</span>=<span class="text-emerald-400">your_api_key_here</span>
+                <span class="text-violet-400">MODEL</span>=<span class="text-emerald-400">Qwen/Qwen3-235B-A22B-Instruct-2507</span>
+                
+                <span class="text-neutral-500 dark:text-neutral-600"># 本地 Ollama 配置示例</span>
+                <span class="text-neutral-500 dark:text-neutral-600"># API_BASE=http://localhost:11434/v1</span>
+                <span class="text-neutral-500 dark:text-neutral-600"># API_KEY=ollama</span>
+                <span class="text-neutral-500 dark:text-neutral-600"># MODEL=qwen2.5:7b-instruct-q4_K_M</span>
+              </code>
+              </pre>
+          </div>
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+            {t(lang, 'guideStep2Note')}  <a
+                href="https://cloud.siliconflow.cn/i/vyKvK1df"
+                target="_blank"
+                class="text-blue-600 dark:text-blue-400 hover:underline">{t(lang, 'guideStep2Note1')} </a
+              > 
+              {t(lang, 'guideStep2Note2')} 
+          </p>
+        </div>
+      </div>
+
+      <!-- 步骤 3: 运行程序 -->
+      <div
+        class="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden shadow-sm"
+      >
+        <div
+          class="flex items-center gap-3 px-6 py-4 border-b border-neutral-200 dark:border-neutral-700"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-emerald-600 text-white text-sm font-bold flex items-center justify-center"
+          >
+            3
+          </div>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">{t(lang, 'guideStep3Title')}</h3>
+        </div>
+        <div class="p-6 space-y-4">
+          <p class="text-neutral-600 dark:text-neutral-500">{t(lang, 'guideStep3Desc')}</p>
+          <div class="relative group">
+            <pre
+              class="bg-neutral-900 dark:bg-neutral-950 rounded-lg p-4 text-sm overflow-x-auto border border-neutral-700 dark:border-neutral-700">
+              <code class="text-neutral-200 dark:text-neutral-100">
+                <span class="text-neutral-500 dark:text-neutral-600">{t(lang, 'guideStep3CodeComment')}</span>
+                paper-transfer.exe input.docx</code>
+            </pre>
+          </div>
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm">
+            {t(lang, 'guideStep3Output')}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 可选参数 -->
+    <div
+      class="mt-12 p-8 bg-gradient-to-b from-neutral-100 dark:from-neutral-900/80 to-transparent border border-neutral-200 dark:border-neutral-700 rounded-xl"
+    >
+      <h4
+        class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2 flex items-center gap-2"
+      >
+        <Settings2 class="w-5 h-5" />
+        {t(lang, 'guideOptionalTitle')}
+      </h4>
+      <p class="text-neutral-500 dark:text-neutral-500 text-sm mb-6">{t(lang, 'guideOptionalDesc')}</p>
+
+      <!-- 示例命令 -->
+      <div class="relative group mb-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">{t(lang, 'guideOptionalExample')}</span>
+        </div>
+        <pre
+          class="bg-neutral-200 dark:bg-neutral-800 rounded-lg px-3 py-2.5 text-sm overflow-x-auto border border-neutral-300 dark:border-neutral-700">
+          <code class="text-neutral-700 dark:text-neutral-300">
+          paper-transfer.exe input.docx --chunk-size 18000 --overlap-size 800 --max-concurrent 1</code>
+        </pre>
+      </div>
+
+      <!-- 参数列表 -->
+      <div class="grid md:grid-cols-2 gap-3">
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--chunk-size</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam1Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam1Default')}</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--overlap-size</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam2Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam2Default')}</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--max-concurrent</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam3Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam3Default')}</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--image-mode</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam4Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam4Default')}</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--debug, -d</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam5Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam5Default')}</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--api-base</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam6Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam6Default')}</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--api-key</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam7Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam7Default')}</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-violet-200 dark:hover:border-violet-900/50 transition-colors">
+          <code
+            class="px-1.5 py-0.5 bg-neutral-200 dark:bg-neutral-800 rounded text-neutral-700 dark:text-violet-400 text-xs font-mono shrink-0"
+            >--model</code
+          >
+          <div class="flex-1 min-w-0">
+            <span class="text-neutral-700 dark:text-neutral-300 text-sm">{t(lang, 'guideParam8Desc')}</span>
+            <span class="text-neutral-400 dark:text-neutral-600 text-xs ml-1">{t(lang, 'guideParam8Default')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 最佳实践 -->
+    <div
+      class="mt-8 p-8 bg-gradient-to-r from-amber-50 dark:from-amber-950/20 to-transparent border border-amber-200 dark:border-amber-900/30 rounded-xl"
+    >
+      <div class="flex items-start gap-4">
+        <div
+          class="w-12 h-12 rounded-lg bg-amber-100 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900/50 flex items-center justify-center shrink-0"
+        >
+          <Lightbulb class="w-6 h-6 text-amber-600 dark:text-amber-400" />
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">{t(lang, 'guideBestPracticeTitle')}</h4>
+          <ul class="space-y-2 text-neutral-600 dark:text-neutral-500 text-sm">
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+              <span>{t(lang, 'guideBestPractice4')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+              <span>{t(lang, 'guideBestPractice1')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+              <span>{t(lang, 'guideBestPractice2')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <ArrowRight class="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+              <span>{t(lang, 'guideBestPractice3')}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

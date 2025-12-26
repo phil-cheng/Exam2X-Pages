@@ -1,0 +1,49 @@
+---
+// Footer - 页脚
+import { Mail, Heart, Github } from 'lucide-astro';
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'zh' } = Astro.props;
+---
+
+<footer class="py-6 border-t border-neutral-200 dark:border-neutral-900">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <!-- Logo 和名称 -->
+      <div class="flex items-center gap-3">
+        <img src="/logo.png" alt="Exam2X" class="w-10 h-10 rounded-lg object-cover" />
+        <div>
+          <h3 class="font-semibold text-neutral-900 dark:text-neutral-300">{t(lang, 'footerTitle')}</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-500">{t(lang, 'footerDesc')}</p>
+        </div>
+      </div>
+
+      <!-- 社交链接 -->
+      <div class="flex items-center gap-4">
+        <a
+          href="https://github.com/yourusername/exam2x"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors"
+        >
+          <Github class="w-4 h-4" />
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+        <a href="mailto:565789229@qq.com" class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors">
+          <Mail class="w-4 h-4" />
+          <span class="hidden sm:inline">Email</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 分隔线 -->
+    <div class="mt-4 pt-2 border-t border-neutral-200 dark:border-neutral-900/50 flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-neutral-600 dark:text-neutral-500">
+      {t(lang, 'footerCopyright')}
+    </div>
+  </div>
+</footer>
