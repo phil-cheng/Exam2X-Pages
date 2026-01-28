@@ -173,9 +173,12 @@ const { lang = 'zh' } = Astro.props;
           <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">
             {t(lang, 'faqContactDesc')}
           </p>
-          <a href="mailto:{t(lang, 'faqContactEmail')}" class="text-violet-600 dark:text-violet-400 hover:underline">
-            {t(lang, 'faqContactEmail')}
-          </a>
+          <div class="flex flex-col gap-2">
+            <span class="text-neutral-700 dark:text-neutral-300 font-medium">WeChat: <span class="text-violet-600 dark:text-violet-400">{t(lang, 'faqContactWechat')}</span></span>
+            <a href="mailto:{t(lang, 'faqContactEmail')}" class="text-violet-600 dark:text-violet-400 hover:underline">
+              Email: {t(lang, 'faqContactEmail')}
+            </a>
+          </div>
         </div>
       </div>
     </div>
