@@ -46,7 +46,7 @@ export const translations = {
     psPoint3Desc: '用户体验差，格式要求严',
     psPoint4: '图片公式处理困难',
     psPoint4Desc: '需手动提取，容易遗漏',
-    psPoint5: '对话模型（deepseek等）大文档处理不稳定',
+    psPoint5: '仅对话模式（web版豆包）对大文档处理不稳定',
     psPoint5Desc: '上下文限制，准确度下降',
     psExPoint1: 'AI 语义理解',
     psExPoint1Desc: '无视格式混乱，智能识别',
