@@ -160,6 +160,24 @@ const { lang = 'zh' } = Astro.props;
           </ul>
         </div>
       </details>
+
+      <!-- Q7 -->
+      <details class="group bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/90 transition-colors">
+          <span class="text-neutral-900 dark:text-neutral-100 font-medium pr-4">
+            {t(lang, 'faqQ7')}
+          </span>
+          <ChevronDown class="w-5 h-5 text-neutral-400 dark:text-neutral-600 shrink-0 group-open:rotate-180 transition-transform duration-200" />
+        </summary>
+        <div class="px-6 pb-5 text-neutral-600 dark:text-neutral-500 leading-relaxed">
+          <p class="mb-3">
+            {t(lang, 'faqA7Part1')}
+          </p>
+          <p>
+            {t(lang, 'faqA7Part2')}
+          </p>
+        </div>
+      </details>
     </div>
 
     <!-- 联系方式 -->
