@@ -123,7 +123,6 @@ const lang = getLanguage(Astro.cookies, Astro.url);
             class="absolute right-0 top-full mt-2 hidden bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg overflow-hidden min-w-[140px] z-50"
           >
             <button
-              onclick="setLanguage('zh')"
               class="lang-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center justify-between gap-2"
               data-lang="zh"
             >
@@ -131,7 +130,6 @@ const lang = getLanguage(Astro.cookies, Astro.url);
               <Check class="w-4 h-4 text-violet-600 dark:text-violet-400 hidden check-icon" />
             </button>
             <button
-              onclick="setLanguage('en')"
               class="lang-option w-full px-4 py-2.5 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors flex items-center justify-between gap-2"
               data-lang="en"
             >
@@ -270,9 +268,28 @@ const lang = getLanguage(Astro.cookies, Astro.url);
     const langChevron = document.getElementById('lang-chevron');
     let isLangMenuOpen = false;
 
-    // 初始化当前语言
-    const savedLang = localStorage.getItem('lang') || 'zh';
-    updateLanguageUI(savedLang);
+    // 其他产品下拉菜单变量声明（提前声明以避免引用错误）
+    const productsDropdownBtn = document.getElementById('products-dropdown-btn');
+    const productsDropdownMenu = document.getElementById('products-dropdown-menu');
+    const productsChevron = document.getElementById('products-chevron');
+    let isProductsMenuOpen = false;
+
+    // 初始化当前语言 UI
+    // 优先使用 URL 中的 lang 参数，其次是 cookie，最后是 localStorage
+    // 这样保证服务端渲染(SSR)和客户端状态一致
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentLang = urlParams.get('lang') || getCookie('lang') || 'zh';
+
+    // 如果 URL 中没有 lang 参数，但有其他偏好，可以在这里处理（可选），
+    // 但为了避免无限刷新，通常保持现状或在 setLanguage 中处理。
+    updateLanguageUI(currentLang);
+
+    // 获取 Cookie 的辅助函数
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
     // 切换下拉菜单
     langDropdownBtn?.addEventListener('click', (e) => {
@@ -294,12 +311,7 @@ const lang = getLanguage(Astro.cookies, Astro.url);
       }
     });
 
-    // 其他产品下拉菜单
-    const productsDropdownBtn = document.getElementById('products-dropdown-btn');
-    const productsDropdownMenu = document.getElementById('products-dropdown-menu');
-    const productsChevron = document.getElementById('products-chevron');
-    let isProductsMenuOpen = false;
-
+    // 其他产品下拉菜单逻辑
     // 切换下拉菜单
     productsDropdownBtn?.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -346,32 +358,50 @@ const lang = getLanguage(Astro.cookies, Astro.url);
       }
     });
 
-    // 语言切换函数
-    (window as any).setLanguage = function(newLang: string) {
+    // 语言切换处理函数
+    function setLanguage(newLang) {
+      if (newLang !== 'zh' && newLang !== 'en') return;
+
       updateLanguageUI(newLang);
       localStorage.setItem('lang', newLang);
       // 设置 cookie 以便服务端渲染时能读取语言偏好
       document.cookie = `lang=${newLang}; path=/; max-age=31536000; SameSite=Lax`;
+
       // 关闭菜单
       isLangMenuOpen = false;
       langDropdownMenu?.classList.add('hidden');
       langChevron?.classList.remove('rotate-180');
+
       // 跳转到新语言 URL
       const url = new URL(window.location.href);
       url.searchParams.set('lang', newLang);
       window.location.href = url.toString();
     };
 
+    // 为语言选项添加点击事件监听
+    const langOptionBtns = document.querySelectorAll('.lang-option');
+    langOptionBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const lang = target.getAttribute('data-lang');
+        if (lang) {
+          setLanguage(lang);
+        }
+      });
+    });
+
     // 更新语言UI
-    function updateLanguageUI(lang: string) {
+    function updateLanguageUI(lang) {
       const langText = document.getElementById('current-lang');
       const langOptions = document.querySelectorAll('.lang-option');
 
       // 更新按钮文字
-      if (lang === 'zh') {
-        langText!.textContent = '中文';
-      } else {
-        langText!.textContent = 'English';
+      if (langText) {
+        if (lang === 'zh') {
+          langText.textContent = '中文';
+        } else if (lang === 'en') {
+          langText.textContent = 'English';
+        }
       }
 
       // 更新选项的选中状态
