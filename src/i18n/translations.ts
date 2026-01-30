@@ -22,9 +22,9 @@ export const translations = {
     productTogether: '多人协同命题',
 
     // Hero Section
-    heroBadge: '基于 LLM 的智能word试卷解析系统，轻松转换成Excel',
+    heroBadge: '告别手动复制，告别固定模版，AI 完美还原试卷',
     heroTitle: 'Exam2X',
-    heroSubtitle: '告别手动复制，告别固定模版，AI 完美还原试卷',
+    heroSubtitle: '基于大模型的智能word试卷解析系统，轻松转换成Excel',
     heroDesc1: '无论格式多乱，无惧公式图片，通过大模型理解语义进行智能分拣。',
     heroDesc2: '支持本地私有化部署，数据安全可控。',
     heroCta1: '开始使用',
